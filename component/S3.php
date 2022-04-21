@@ -11,16 +11,16 @@ class S3
 {
 	protected S3Client $S3Client;
 	
-	public function __construct(string $region, string $endpoint, string $accessKey, string $secretKey)
+	public function __construct(string $region, string $endpoint, string $accessKey, string $secretKey, string $version = '2006-03-01')
 	{
 		$this->S3Client = new S3Client([
 			'region' => $region,
-			'version' => '2006-03-01',
-			'endpoint' => $$endpoint,
+			'endpoint' => $endpoint,
 			'credentials' => [
 				'key'		=> $accessKey,
 				'secret'	=> $secretKey,
 			],
+			'version' => $version,
 			'use_path_style_endpoint' => true
 		]);
 	}
