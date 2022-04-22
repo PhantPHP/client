@@ -18,7 +18,7 @@
         "phpstan/phpstan": "^1.4"
     },
     "scripts": {
-        "analyse": "vendor/bin/phpstan analyse component test --memory-limit=4G"
+        "analyse": "vendor/bin/phpstan analyse component --memory-limit=4G"
     },
     "autoload": {
         "psr-4": {
