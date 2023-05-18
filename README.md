@@ -15,7 +15,7 @@ PHP >= 8.0
 ### MySQL
 
 ```php
-use Phant\Client\MySQL as ClientMySQL;
+use Phant\Client\Service\MySQL as ClientMySQL;
 
 $clientMySQL = new ClientMySQL(
 	'127.0.0.1',
