@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phant\Client\Port\S3;
 
-interface Object
+interface Bucket
 {
     public function set(
         string $key,

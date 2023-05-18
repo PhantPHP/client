@@ -116,9 +116,9 @@ $clientS3->deleteObject($bucket, 'foo');
 
 ```php
 use Phant\Client\Service\S3 as ClientS3;
-use Phant\Client\Service\S3\Object as ClientS3Object;
+use Phant\Client\Service\S3\Bucket as ClientS3Bucket;
 
-$clientS3Object = new ClientS3Object(
+$clientS3Bucket = new ClientS3Bucket(
 	new ClientS3(
 		$region,
 		$endpoint,
@@ -127,7 +127,7 @@ $clientS3Object = new ClientS3Object(
 	),
 	$bucket
 );
-$clientS3Object->set('foo', 'bar');
-$bar = $clientS3Object->get('foo');
-$clientS3Object->delete('foo');
+$clientS3Bucket->set('foo', 'bar');
+$bar = $clientS3Bucket->get('foo');
+$clientS3Bucket->delete('foo');
 ```
