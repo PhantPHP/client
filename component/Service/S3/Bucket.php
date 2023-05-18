@@ -6,7 +6,7 @@ namespace Phant\Client\Service\S3;
 
 use Phant\Client\Service\S3;
 
-class Object implements \Phant\Client\Port\S3\Object
+class Bucket implements \Phant\Client\Port\S3\Bucket
 {
     public function __construct(
         protected readonly S3 $client,
