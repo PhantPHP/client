@@ -15,7 +15,7 @@ PHP >= 8.0
 ### MySQL
 
 ```php
-use Phant\Client\MySQL as ClientMySQL;
+use Phant\Client\Service\MySQL as ClientMySQL;
 
 $clientMySQL = new ClientMySQL(
 	'127.0.0.1',
@@ -99,16 +99,35 @@ $exist = $clientMySQL->existByColumnValue(
 ### S3
 
 ```php
-use Phant\Client\S3 as ClientS3;
+use Phant\Client\Service\S3 as ClientS3;
 
 $clientS3 = new ClientS3(
 	$region,
 	$endpoint,
 	$accessKey,
 	$secretKey,
+);
+$clientS3->setObject($bucket, 'foo', 'bar');
+$bar = $clientS3->getObject($bucket, 'foo');
+$clientS3->deleteObject($bucket, 'foo');
+```
+
+### S3 Bucket
+
+```php
+use Phant\Client\Service\S3 as ClientS3;
+use Phant\Client\Service\S3\Object as ClientS3Object;
+
+$clientS3Object = new ClientS3Object(
+	new ClientS3(
+		$region,
+		$endpoint,
+		$accessKey,
+		$secretKey,
+	),
 	$bucket
 );
-$clientS3->set('foo', 'bar');
-$bar = $clientS3->get('foo');
-$clientS3->delete('foo');
+$clientS3Object->set('foo', 'bar');
+$bar = $clientS3Object->get('foo');
+$clientS3Object->delete('foo');
 ```
