@@ -32,8 +32,7 @@ class MySQL implements \Phant\Client\Port\MySQL
         array $values = []
     ): void {
         $statement = $this->getPdo()->prepare($query);
-        $this->bindParams($statement, $values);
-        $statement->execute();
+        $statement->execute($values);
     }
 
     public function getList(
@@ -41,8 +40,7 @@ class MySQL implements \Phant\Client\Port\MySQL
         array $values = []
     ): array {
         $statement = $this->getPdo()->prepare($query);
-        $this->bindParams($statement, $values);
-        $statement->execute();
+        $statement->execute($values);
         $all = $statement->fetchAll();
 
         if ($statement->rowCount() == 0) {
@@ -70,8 +68,7 @@ class MySQL implements \Phant\Client\Port\MySQL
         array $values = []
     ): array {
         $statement = $this->getPdo()->prepare($query);
-        $this->bindParams($statement, $values);
-        $statement->execute();
+        $statement->execute($values);
         $one = $statement->fetch();
 
         if ($statement->rowCount() == 0) {
@@ -99,8 +96,7 @@ class MySQL implements \Phant\Client\Port\MySQL
         array $values = []
     ): bool {
         $statement = $this->getPdo()->prepare($query);
-        $this->bindParams($statement, $values);
-        $statement->execute();
+        $statement->execute($values);
         $exist = $statement->fetch(PDO::FETCH_ASSOC);
 
         return ($exist != false);
@@ -119,40 +115,13 @@ class MySQL implements \Phant\Client\Port\MySQL
         );
     }
 
-    private function bindParams(
-        &$statement,
-        array $values
-    ): void {
-        foreach ($values as $param => $value) {
-            if (is_object($value)) {
-                $value = (string) $value;
-            }
-            $statement->bindParam($param, $value, $this->getParamType($value));
-        }
-    }
-
-    private function getParamType(
-        mixed $value
-    ): int {
-        if (is_int($value)) {
-            return PDO::PARAM_INT;
-        }
-        if (is_float($value)) {
-            return PDO::PARAM_INT;
-        }
-        if (is_bool($value)) {
-            return PDO::PARAM_BOOL;
-        }
-        if (is_null($value)) {
-            return PDO::PARAM_NULL;
-        }
-
-        return PDO::PARAM_STR;
-    }
-
     protected function getPdo(
     ): PDO {
-        $this->pdo ??= new PDO(
+        if ($this->pdo) {
+            return $this->pdo;
+        }
+        
+        $this->pdo = new PDO(
             'mysql:host=' . $this->host . ';dbname=' . $this->dbname . ';port=' . $this->port . ';charset=' . $this->charset,
             $this->user,
             $this->pass,
