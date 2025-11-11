@@ -131,3 +131,20 @@ $clientS3Bucket->set('foo', 'bar');
 $bar = $clientS3Bucket->get('foo');
 $clientS3Bucket->delete('foo');
 ```
+
+### FTP Client
+
+```php
+use Phant\Client\Service\Ftp as FtpClient;
+
+$ftpClient = new FtpClient(
+	host: 'example.com',
+	username: 'user',
+	password: 'pass',
+	//port: 21 (default)
+	//passiveMode: false (default)
+);
+
+$files = $ftpClient->listFiles('/path/to/directory');
+$downloadedFile = $ftpClient->download('/path/to/remote/file.txt', '/local/directory');
+```

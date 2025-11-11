@@ -10,3 +10,4 @@ test/coverage
 .DS_Store
 .nova/*
 .php-cs-fixer.cache
+docker/

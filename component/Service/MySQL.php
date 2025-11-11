@@ -120,7 +120,7 @@ class MySQL implements \Phant\Client\Port\MySQL
         if ($this->pdo) {
             return $this->pdo;
         }
-        
+
         $this->pdo = new PDO(
             'mysql:host=' . $this->host . ';dbname=' . $this->dbname . ';port=' . $this->port . ';charset=' . $this->charset,
             $this->user,
