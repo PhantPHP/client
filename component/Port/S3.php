@@ -14,17 +14,17 @@ interface S3
         string $body
     ): void;
 
-	/**
-	 * @throws NotFound
-	 */
+    /**
+     * @throws NotFound
+     */
     public function getObject(
         string $bucket,
         string $key
     ): string;
 
-	/**
-	 * @throws NotFound
-	 */
+    /**
+     * @throws NotFound
+     */
     public function deleteObject(
         string $bucket,
         string $key

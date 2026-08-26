@@ -13,34 +13,34 @@ interface MySQL
         array $values = []
     ): void;
 
-	/**
-	 * @throws NotFound
-	 */
+    /**
+     * @throws NotFound
+     */
     public function getList(
         string $query,
         array $values = []
     ): array;
 
-	/**
-	 * @throws NotFound
-	 */
+    /**
+     * @throws NotFound
+     */
     public function getListByColumnValue(
         string $table,
         string $column,
         string|int|float|bool $value
     ): array;
 
-	/**
-	 * @throws NotFound
-	 */
+    /**
+     * @throws NotFound
+     */
     public function get(
         string $query,
         array $values = []
     ): array;
 
-	/**
-	 * @throws NotFound
-	 */
+    /**
+     * @throws NotFound
+     */
     public function getByColumnValue(
         string $table,
         string $column,
